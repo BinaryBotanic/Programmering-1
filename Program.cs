@@ -1,21 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MinForstaApp
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        List<string> nameList = new List<string>(); // Skapar en lista för att lagra namnen
+        string input;
+        int maxNames = 200; // Max antal namn som användaren kan mata in
+
+        // Mata in namn tills användaren säger nej eller vi når maxantalet 200
+        do
         {
-            Console.WriteLine("Hallå Världen!");
-            Console.WriteLine("Vad är ditt mål med utbildningen?");
-            Console.WriteLine("Mitt mål med utbildningen i programmering är att fördjupa mina kunskaper och färdigheter inom detta fascinerande område. Jag har alltid varit intresserad av programmering och attraheras av konsten att skapa och forma saker i en virtuell värld. Den ständiga utvecklingen och de nya utmaningarna som programmering erbjuder motiverar mig att ständigt lära mig och växa. Genom denna utbildning hoppas jag kunna utveckla de tekniska färdigheter som behövs för att bidra till innovativa projekt och hitta lösningar på komplexa problem. Jag ser fram emot att kunna tillämpa mina kunskaper i praktiska sammanhang och kanske även bidra till att skapa nya och spännande applikationer eller system.");
-            Console.WriteLine("Vad tror du om dina möjligheter om att nå målet efter utbildningen?");
-            Console.WriteLine("Mina möjligheter att nå målet efter utbildningen i programmering är positiva, förutsatt att jag är engagerad och strategisk. Genom att verkligen förstå och bemästra grundläggande programmeringskoncept får jag en solid grund för att hantera mer avancerade ämnen. Praktisk erfarenhet är avgörande, så jag planerar att arbeta på projekt både under och efter utbildningen för att tillämpa mina kunskaper och bygga en stark merit.\r\n\r\nAtt nätverka inom branschen och hålla mig uppdaterad med de senaste trenderna och teknologierna kommer också att vara viktigt. Jag är medveten om att anpassningsbarhet och uthållighet är nycklar till framgång, och jag är beredd att fortsätta lära mig och utvecklas. Med rätt engagemang och strategi har jag goda chanser att nå mina mål efter utbildningen.");
-            Console.ReadKey();
+            if (nameList.Count >= maxNames)
+            {
+                Console.WriteLine("Du har nått max antal inmatade namn (200).");
+                break;
+            }
+
+            // Be användaren att mata in ett namn
+            Console.Write("Mata in ett namn: ");
+            input = Console.ReadLine();
+            nameList.Add(input); // Lägg till namnet i listan
+
+            // Fråga om användaren vill mata in ett till namn
+            Console.Write("Vill du mata in ett till namn? (ja/nej): ");
+            input = Console.ReadLine().ToLower();
+
+        } while (input == "ja");
+
+        // Skapa en dictionary för att hålla reda på antal förekomster av varje namn
+        Dictionary<string, int> nameCount = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
+        // Loopa igenom nameList och räkna hur många gånger varje namn förekommer
+        foreach (string name in nameList)
+        {
+            if (nameCount.ContainsKey(name))
+            {
+                nameCount[name]++; // Öka räknaren för detta namn
+            }
+            else
+            {
+                nameCount[name] = 1; // Lägg till namnet med ett värde av 1
+            }
+        }
+
+        // Skriver ut hur många gånger varje namn förekommer
+        Console.WriteLine("\nNamnförekomster:");
+        foreach (var entry in nameCount)
+        {
+            Console.WriteLine($"{entry.Key} förekommer {entry.Value} gång(er).");
         }
     }
 }
