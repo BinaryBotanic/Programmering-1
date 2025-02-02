@@ -1,21 +1,74 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MinForstaApp
+namespace Kasta_Tärning__Uppgift_2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hallå Världen!");
-            Console.WriteLine("Vad är ditt mål med utbildningen?");
-            Console.WriteLine("Mitt mål med utbildningen i programmering är att fördjupa mina kunskaper och färdigheter inom detta fascinerande område. Jag har alltid varit intresserad av programmering och attraheras av konsten att skapa och forma saker i en virtuell värld. Den ständiga utvecklingen och de nya utmaningarna som programmering erbjuder motiverar mig att ständigt lära mig och växa. Genom denna utbildning hoppas jag kunna utveckla de tekniska färdigheter som behövs för att bidra till innovativa projekt och hitta lösningar på komplexa problem. Jag ser fram emot att kunna tillämpa mina kunskaper i praktiska sammanhang och kanske även bidra till att skapa nya och spännande applikationer eller system.");
-            Console.WriteLine("Vad tror du om dina möjligheter om att nå målet efter utbildningen?");
-            Console.WriteLine("Mina möjligheter att nå målet efter utbildningen i programmering är positiva, förutsatt att jag är engagerad och strategisk. Genom att verkligen förstå och bemästra grundläggande programmeringskoncept får jag en solid grund för att hantera mer avancerade ämnen. Praktisk erfarenhet är avgörande, så jag planerar att arbeta på projekt både under och efter utbildningen för att tillämpa mina kunskaper och bygga en stark merit.\r\n\r\nAtt nätverka inom branschen och hålla mig uppdaterad med de senaste trenderna och teknologierna kommer också att vara viktigt. Jag är medveten om att anpassningsbarhet och uthållighet är nycklar till framgång, och jag är beredd att fortsätta lära mig och utvecklas. Med rätt engagemang och strategi har jag goda chanser att nå mina mål efter utbildningen.");
-            Console.ReadKey();
+            // Skapa en instans av Random-klassen för att generera slumptal
+            Random random = new Random();
+            string spelaIgen;
+
+            // En do-while loop för att fortsätta spelet tills användaren vill avsluta
+            do
+            {
+                // Frågar användaren om att ange tärningskast i formatet "3T6", "2T20", etc.
+                Console.Write("Ange tärningskast (ex: 3T6, 2T20): ");
+                string tarningInput = Console.ReadLine();
+
+                // Anropar den nya överlagrade metoden KastaTärning som tar en sträng som inparameter
+                int resultat = KastaTärning(tarningInput, random);
+
+                // Skriver ut den totala summan av alla kast
+                Console.WriteLine("Summan blir: Resultat " + resultat);
+
+                // Frågar användaren om de vill kasta tärningen igen eller avsluta
+                Console.WriteLine("Vill du kasta igen? (ja/nej): ");
+                spelaIgen = Console.ReadLine().ToLower(); // Läser in svaret och gör det gemener för enkel jämförelse
+
+            } while (spelaIgen == "ja");
+
+            // Avslutar programmet med ett meddelande
+            Console.WriteLine("Programmet avslutas. Tack för att du spelade!");
+        }
+
+        // Ny överlagrad metod: Tar en sträng som input, t.ex. "3T6" och tolkar den
+        static int KastaTärning(string tarningInput, Random random)
+        {
+            // Dela upp strängen baserat på bokstaven "T"
+            string[] delar = tarningInput.Split('T');
+
+            // Parsar antalet kast (första delen av strängen)
+            int antalKast = int.Parse(delar[0]);
+
+            // Parsar antalet sidor på tärningen (andra delen av strängen)
+            int antalSidor = int.Parse(delar[1]);
+
+            // Anropar den överlagrade metoden som tar antal sidor och antal kast
+            return KastaTärning(antalSidor, antalKast, random);
+        }
+
+        // Ursprunglig metod: Kasta en tärning med specifikt antal sidor ett visst antal gånger
+        static int KastaTärning(int antalSidor, int antalKast, Random random)
+        {
+            int summa = 0;
+
+            // Loopar igenom antalet kast
+            for (int i = 1; i <= antalKast; i++)
+            {
+                // Slumpar fram ett tal mellan 1 och antal sidor på tärningen
+                int kast = random.Next(1, antalSidor + 1);
+
+                // Skriver ut resultatet av varje kast
+                Console.WriteLine("Kast " + i + " blir: " + kast);
+
+                // Lägger till kastets resultat till summan
+                summa += kast;
+            }
+
+            // Returnerar den totala summan av alla kast
+            return summa;
         }
     }
 }
