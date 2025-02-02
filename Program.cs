@@ -1,21 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Program som läser in två tal och beräknar summan, produkten och kvoten.
+using System;
 
-namespace MinForstaApp
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        // Variabel som kontrollerar om programmet ska köras igen
+        string körIgen;
+
+        // Använd en do-while-loop för att köra programmet flera gånger
+        do
         {
-            Console.WriteLine("Hallå Världen!");
-            Console.WriteLine("Vad är ditt mål med utbildningen?");
-            Console.WriteLine("Mitt mål med utbildningen i programmering är att fördjupa mina kunskaper och färdigheter inom detta fascinerande område. Jag har alltid varit intresserad av programmering och attraheras av konsten att skapa och forma saker i en virtuell värld. Den ständiga utvecklingen och de nya utmaningarna som programmering erbjuder motiverar mig att ständigt lära mig och växa. Genom denna utbildning hoppas jag kunna utveckla de tekniska färdigheter som behövs för att bidra till innovativa projekt och hitta lösningar på komplexa problem. Jag ser fram emot att kunna tillämpa mina kunskaper i praktiska sammanhang och kanske även bidra till att skapa nya och spännande applikationer eller system.");
-            Console.WriteLine("Vad tror du om dina möjligheter om att nå målet efter utbildningen?");
-            Console.WriteLine("Mina möjligheter att nå målet efter utbildningen i programmering är positiva, förutsatt att jag är engagerad och strategisk. Genom att verkligen förstå och bemästra grundläggande programmeringskoncept får jag en solid grund för att hantera mer avancerade ämnen. Praktisk erfarenhet är avgörande, så jag planerar att arbeta på projekt både under och efter utbildningen för att tillämpa mina kunskaper och bygga en stark merit.\r\n\r\nAtt nätverka inom branschen och hålla mig uppdaterad med de senaste trenderna och teknologierna kommer också att vara viktigt. Jag är medveten om att anpassningsbarhet och uthållighet är nycklar till framgång, och jag är beredd att fortsätta lära mig och utvecklas. Med rätt engagemang och strategi har jag goda chanser att nå mina mål efter utbildningen.");
-            Console.ReadKey();
-        }
+            // Be användaren mata in två tal
+            Console.Write("Mata in det första talet: ");
+            double tal1 = Convert.ToDouble(Console.ReadLine()); // Läs in första talet som ett flyttal
+
+            Console.Write("Mata in det andra talet: ");
+            double tal2 = Convert.ToDouble(Console.ReadLine()); // Läs in andra talet som ett flyttal
+
+            // Beräkna summan, produkten och kvoten av de två talen
+            double summa = tal1 + tal2; // Beräknar summan av tal1 och tal2
+            double produkt = tal1 * tal2; // Beräknar produkten av tal1 och tal2
+            double divition = tal1 / tal2; // Beräknar kvoten av tal1 och tal2
+
+            // Skriv ut resultaten
+            Console.WriteLine("Summan av talen är: " + summa); //Ger svar för summa
+            Console.WriteLine("Produkten av talen är: " + produkt); //Ger svar för produkten
+            Console.WriteLine("Divition av talen är: " + divition); //Ger svar för divition
+
+            // Fråga användaren om de vill köra programmet igen
+            Console.WriteLine("Tryck på Enter om du vill köra en gång till, eller skriv 'n' och tryck Enter för att avsluta.");
+            körIgen = Console.ReadLine();
+
+        } while (körIgen == ""); // Kör om användaren trycker på Enter utan att skriva något
+
+        // Meddelande om att programmet avslutas
+        Console.WriteLine("Programmet avslutas.");
     }
 }
